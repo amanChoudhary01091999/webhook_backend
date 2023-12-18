@@ -1,0 +1,26 @@
+[
+    {
+        "id": 4,
+        "name": "Rajiv",
+        "employee": true,
+        "experience": 5
+    },
+    {
+        "id": 1,
+        "name": "Aman",
+        "employee": true,
+        "experience": 1
+    },
+    {
+        "id": 2,
+        "name": "Proseed",
+        "employee": true,
+        "experience": 2
+    },
+    {
+        "id": 3,
+        "name": "Kundan",
+        "employee": false,
+        "experience": 3
+    }
+]
