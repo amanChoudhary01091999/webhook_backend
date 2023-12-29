@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const cors = require('cors');
 
 //Package for error handeling
 const morgan = require('morgan')
@@ -14,26 +15,27 @@ const employeeRoutes = require("./routes/employees")
 const userRoutes = require("./routes/user")
 const todoRoute = require("./routes/todoList")
 const bitbucket = require("./routes/bitbucket")
+const mongoUserName = 'amanchoudharyofficial'
+const mongoPassword = 'chaman0109'
 
-const uri = 'mongodb+srv://amanchoudhary0109official:mzI9UB4TlyrTlcg1@cluster0.n9ldbai.mongodb.net'
+const uri = `mongodb+srv://${mongoUserName}:${mongoPassword}@cluster0.zpiraa7.mongodb.net/?retryWrites=true&w=majority`
 // Connecting with database
 const mongoose = require('mongoose')
-// mongoose.connect('mongodb+srv://amanchoudhary0109official:mzI9UB4TlyrTlcg1@cluster0.n9ldbai.mongodb.net/', {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// })
 
-// mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-//     .then(() => {
-//         console.log('Connected to MongoDB Atlas');
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log('Connected to MongoDB Atlas');
 
-//     })
-//     .catch((err) => console.error('Error connecting to MongoDB Atlas:', err));
+    })
+    .catch((err) => console.error('Error connecting to MongoDB Atlas:', err));
 
 app.use(morgan('dev'))
 //which kind of bodies we need to parse should be defined
 app.use(bodyParser.urlencoded({ extended: false }))//extended true allows rich data text 
 app.use(bodyParser.json())
+app.use(cors());
+
+
 
 //adding headers for CORS
 app.use((req, res, next) => {

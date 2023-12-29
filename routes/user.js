@@ -7,7 +7,6 @@ const jwt = require('jsonwebtoken')
 
 
 router.post("/signup", (req, res, next) => {
-    console.log("REQQ", req, res)
     User.find({ email: req.body.email }).then((user) => {
         if (user.length) {
             res.status(409).json({ message: "Email already exists" })
@@ -23,8 +22,8 @@ router.post("/signup", (req, res, next) => {
                     const user = new User({
                         _id: new mongoose.Types.ObjectId(),
                         email: req.body.email,
-                        password: hash
-
+                        password: hash,
+                        name: req.body.name
                     })
 
                     user.save()
